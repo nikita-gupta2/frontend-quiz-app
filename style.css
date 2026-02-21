@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+      padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 16px;
+}
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey-500: #626c7f;
+  --grey-50: #f4f6fa;
+
+  --blue-950: #2d3949;
+  --blue-900: #313e51;
+  --blue-850: #3b4d66;
+  --blue-500: #306aff;
+  --blue-300: #abc1e1;
+  --blue-100: #edf1f9;
+  --blue-50: #ebf0ff;
+
+   --green-500: #2fd887;
+   --green-100: #e0fdef;
+
+   --purple-600: #a729f5;
+   --purple-100: #f6e7ff;
+
+   --orange-400: #ff7e35;
+   --orange-50: #fff5ed;
+
+    --red-500: #ee5454;
+}
+
+  /* Text Preset 1 (Mobile) */
+  .text-preset-1 {
+    font-size: 88px;
+    line-height: 100%;
+  }
+
+  /* Text Preset 2 (Mobile) */
+  .text-preset-2-medium {
+    font-size: 40px;
+    line-height: 100%;
+    font-weight: 500;
+  }
+
+  .text-preset-2-light {
+    font-size: 40px;
+    line-height: 100%;
+    font-weight: 300;
+  }
+
+  /* Text Preset 3 (Mobile) */
+  .text-preset-3 {
+    font-size: 20px;
+    line-height: 120%;
+  }
+
+  /* Text Preset 4 (Mobile) */
+  .text-preset-4 {
+    font-size: 18px;
+    line-height: 100%;
+    font-weight: 500;
+  }
+  /* Text Preset 5 (Mobile) – Italic */
+  .text-preset-5-mobile {
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+body{
+    font-family: "Rubik", sans-serif;
+    background-color: var(--grey-50);
+    min-height: 100vh;
+    background-image: url("./starter-code/assets/images/pattern-background-mobile-light.svg");
+    background-size: cover;        /* makes it cover full screen */
+    background-position: center;   /* center image */
+    background-repeat: no-repeat;  /* prevents repeating */
+}
+.dark-theme{
+    background-color: var(--blue-900);
+   background-image: url("./starter-code/assets/images/pattern-background-mobile-dark.svg");
+}
+nav{
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-ques{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--blue-900);
+}
+.nav-icon{
+    border: 1px solid var(--purple-100);
+    background-color: var(--purple-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    border-radius: 4px;
+}
+
+.topic-dark{
+    color: var(--white);
+}
+.mode-change{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.theme-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    padding: 4px;
+    display: flex;
+    justify-content: start;
+    background-color: var(--purple-600);
+    border-radius: 10px;
+}
+.toggle-end{
+    justify-content: end;
+}
+.theme-change{
+    border-radius: 50%;
+    background-color: var(--white);
+    width: 12px;
+    height: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+
+  /* Text Preset 1 – Large Heading */
+.text-preset-1 {
+  font-size: 144px;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-weight: 500; /* Rubik Medium */
+}
+
+/* Text Preset 2 – Heading */
+.text-preset-2-medium {
+  font-size: 64px;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.text-preset-2-light {
+  font-size: 64px;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-weight: 300; /* Rubik Light */
+}
+
+/* Text Preset 3 – Body Large */
+.text-preset-3 {
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+/* Text Preset 4 – Body */
+.text-preset-4 {
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+/* Text Preset 4 – Medium */
+.text-preset-4-medium {
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-weight: 500; /* Rubik Medium */
+}
+
+/* Text Preset 5 – Medium */
+.text-preset-5-medium {
+  font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 500; /* Rubik Medium */
+}
+
+/* Text Preset 5 – Regular */
+.text-preset-5-regular {
+  font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 400; /* Rubik Regular */
+}
+
+/* Text Preset 6 – Italic */
+.text-preset-6 {
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-style: italic;
+}
+ nav{
+    padding: 24px 64px;
+ }
+.nav-ques{
+    gap: 24px;
+}
+.mode-change{
+    gap: 16px;
+}
+.nav-icon{
+    width: 56px;
+    height: 56px;
+}
+body{
+    background-image: url("./starter-code/assets/images/pattern-background-tablet-light.svg");
+    background-size: auto;        /* makes it cover full screen */
+    background-position: top left;   /* start from top */  
+    background-repeat: no-repeat;  /* prevents repeating */
+}
+.dark-theme{
+    background-color: var(--blue-900);
+   background-image: url("./starter-code/assets/images/pattern-background-tablet-dark.svg");
+}
+}
+
+@media (min-width: 1440px) {
+    nav{
+    padding: 56px 140px;
+    }
+    body{
+    background-image: url("./starter-code/assets/images/pattern-background-desktop-light.svg");
+    background-size: auto;        /* makes it cover full screen */
+    background-position: top left;   /* start from top */  
+    background-repeat: no-repeat;  /* prevents repeating */
+}
+.dark-theme{
+    background-color: var(--blue-900);
+   background-image: url("./starter-code/assets/images/pattern-background-desktop-dark.svg");
+}
+}
