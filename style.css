@@ -84,17 +84,20 @@ body{
     background-size: cover;        /* makes it cover full screen */
     background-position: center;   /* center image */
     background-repeat: no-repeat;  /* prevents repeating */
+    color: var(--blue-900);
 }
 .dark-theme{
     background-color: var(--blue-900);
    background-image: url("./starter-code/assets/images/pattern-background-mobile-dark.svg");
+   color: var(--white)
 }
 nav{
     padding: 16px 24px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
+
 .nav-ques{
     display: flex;
     align-items: center;
@@ -102,15 +105,17 @@ nav{
     color: var(--blue-900);
 }
 .nav-icon{
-    border: 1px solid var(--purple-100);
-    background-color: var(--purple-100);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
+    height: 40px;
     border-radius: 4px;
 }
-
+ .nav-icon img{
+    width: 28.57px;
+    height: 28.57px;
+ }
 .topic-dark{
     color: var(--white);
 }
@@ -139,11 +144,69 @@ nav{
     width: 12px;
     height: 12px;
 }
+main{
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
+.subject-info{
+    margin-top: 1rem;
+    color: var(--grey-500);
+}
+.quiz-choice h1{
+  margin-bottom: 8px;
+}
+.blue-900-color{
+    color: var(--blue-300);
+}
+.bg-orange-50{
+    background-color: var(--orange-50);
+    border: 1px solid var(--orange-50);
+}
+.bg-green-100{
+    background-color: var(--green-100);
+    border: 1px solid var(--green-100);
+}
 
+.bg-blue-50{
+    background-color: var(--blue-50);
+    border: 1px solid var(--blue-50);
+}
+.bg-purple-100{
+    background-color: var(--purple-100);
+    border: 1px solid var(--purple-100);
+}
+.choice-btn{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 
+.choice{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-radius: 12px;
+    background-color: var(--white);
+}
 
-
+.choice-dark{
+    background-color: var(--blue-850);
+}
+ .submit-btnhide{
+    display: none;
+ }
+ .nav-ques-hide{
+    display: none;
+ }
 
 
 
@@ -190,7 +253,7 @@ nav{
 }
 
 /* Text Preset 4 – Body */
-.text-preset-4 {
+.text-preset-4-small {
   font-size: 18px;
   line-height: 100%;
   letter-spacing: 0;
@@ -198,7 +261,7 @@ nav{
 }
 
 /* Text Preset 4 – Medium */
-.text-preset-4-medium {
+.text-preset-4{
   font-size: 28px;
   line-height: 100%;
   letter-spacing: 0;
@@ -229,18 +292,28 @@ nav{
   font-weight: 400;
   font-style: italic;
 }
- nav{
+ nav,main{
     padding: 24px 64px;
+ }
+ main{
+    gap: 64px;
  }
 .nav-ques{
     gap: 24px;
 }
+.nav-icon img{
+    width: 40px;
+    height: 40px;
+ }
 .mode-change{
     gap: 16px;
 }
 .nav-icon{
     width: 56px;
     height: 56px;
+}
+.choice{
+    gap: 24px;
 }
 body{
     background-image: url("./starter-code/assets/images/pattern-background-tablet-light.svg");
@@ -255,7 +328,7 @@ body{
 }
 
 @media (min-width: 1440px) {
-    nav{
+    nav , main{
     padding: 56px 140px;
     }
     body{
@@ -263,6 +336,21 @@ body{
     background-size: auto;        /* makes it cover full screen */
     background-position: top left;   /* start from top */  
     background-repeat: no-repeat;  /* prevents repeating */
+    }
+    main{
+        display: flex;
+        flex-direction: row;
+        gap: 128px;
+        align-items: flex-start;
+    }
+    .quiz-choice {
+    flex: 0 0 40%;
+  }
+  .choice-btn {
+    flex: 1;
+  }
+  .subject-info{
+    margin-top: 48px;
 }
 .dark-theme{
     background-color: var(--blue-900);
