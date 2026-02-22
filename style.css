@@ -220,7 +220,18 @@ main{
     border-radius: 12px;
     background-color: var(--white);
 }
-.submit, .replay{
+.choice-btn .choice:hover{
+    border: 3px solid var(--purple-600);
+}
+
+.choice-btn .choice:hover .nav-icon {
+  background-color: var(--purple-600);
+  
+}
+.choice-btn .choice:hover .option-letter{
+    color: var(--white);
+}
+.submit, .replay,.Nextpage{
     width: 100%;
     background: none;
     border: none;
@@ -230,6 +241,9 @@ main{
     border-radius: 12px;
     background-color: var(--purple-600);
     color: var(--white);
+}
+.replay{
+    margin-top: 16px;
 }
 .ques-bar{
     margin-top: 24px;
@@ -308,6 +322,7 @@ main{
     justify-content: center;
     padding: 48px;
     gap: 40px;
+    background-color: var(--white);
 }
 
 @media (min-width: 768px) {
@@ -366,7 +381,7 @@ main{
   letter-spacing: 0;
   font-weight: 500; /* Rubik Medium */
 }
-.submit,.replay{
+.submit,.replay,.Nextpage{
     margin-top: 8px;
     margin-bottom: 8px;
 }

@@ -16,7 +16,9 @@ let submit_Btn = document.querySelector(".submit");
 let null_Error = document.querySelector(".null-error");
 let result_display = document.querySelector(".result-display");
 let quiz_result = document.querySelector(".quiz-result");
-
+let nextpage = document.querySelector(".Nextpage");
+let resultNavQues = result_display.querySelector(".nav-ques");
+let correct_score = 0;
 
 function darktheme(){
     console.log("dark theme");
@@ -51,7 +53,12 @@ btn.addEventListener("click",()=>{
     else
         lighttheme();
 });
-
+const subjectBgMap = {
+  html: "bg-orange-50",
+  css: "bg-green-100",
+  js: "bg-blue-50",
+  Accessibility: "bg-purple-100"
+};
 
 let selectedOptionIndex = null;
 let selectedBtn = null;
@@ -75,6 +82,40 @@ function enableOptionMode() {
     iconDiv.classList.add("option-mode");
   });
 }
+
+
+function updateNavFromClicked(clickedBtn, topic_nav) {
+  const navIconDiv = topic_nav.querySelector(".nav-icon");
+  const navIconImg = navIconDiv.querySelector("img");
+  const navTopicText = topic_nav.querySelector(".nav-topic");
+
+  const clickedIconDiv = clickedBtn.querySelector(".nav-icon");
+  const clickedImg = clickedIconDiv.querySelector("img");
+  const clickedTitle = clickedBtn.querySelector(".nav-topic").textContent.trim();
+
+  // copy image
+  navIconImg.src = clickedImg.src;
+  navIconImg.alt = clickedImg.alt;
+
+  // copy text
+  navTopicText.textContent = clickedTitle;
+
+  // reset background classes
+  Object.values(subjectBgMap).forEach(bg =>
+    navIconDiv.classList.remove(bg)
+  );
+
+  // apply correct background
+  for (const key in subjectBgMap) {
+    if (clickedBtn.classList.contains(key)) {
+      navIconDiv.classList.add(subjectBgMap[key]);
+      break;
+    }
+  }
+}
+
+
+
 choice_btns.forEach((btn, index) => {
   btn.addEventListener("click", (e) => {
   const clickedBtn = e.currentTarget;
@@ -89,18 +130,8 @@ choice_btns.forEach((btn, index) => {
   ){
     topic_nav.classList.remove("nav-ques-hide"); // remove nav-topic from hiding 
   nav.classList.add("content-justify");// justify its content
-   // selected topic
-    const navIconImg = topic_nav.querySelector(".nav-icon img");
-    const navTopicText = topic_nav.querySelector(".nav-topic");
-
-    // get clicked button icon & text
-    const clickedImg = clickedBtn.querySelector(".nav-icon img");
-    const clickedTitle = clickedBtn.querySelector(".nav-topic").textContent;
-
-    // update NAV only (safe)
-    navIconImg.src = clickedImg.src;
-    navIconImg.alt = clickedImg.alt;
-    navTopicText.textContent = clickedTitle;
+    updateNavFromClicked(clickedBtn, topic_nav);
+    updateNavFromClicked(clickedBtn, resultNavQues);
      enableOptionMode();
     quiz_front.classList.add("quiz-choice-hide");
   // changing 1st article part
@@ -152,6 +183,8 @@ function showResult(){
     quiz_Display.classList.add("display-hide");
     choice_article.classList.add("display-hide");
     quiz_result.classList.remove("display-hide");
+    result_display.querySelector(".score").textContent=correct_score;
+    
 }
 function goToNextQuestion() {
   selectedOptionIndex = null;
@@ -202,13 +235,12 @@ function handlesubmit(selectedData) {
     null_Error.classList.remove("error-hide");
     return;
   }
-  if (submit_Btn.classList.contains("next-change")){
-    submit_Btn.classList.remove("next-change");
-    count++;
-    submit_Btn.textContent = "Submit Answer";
-    console.log("before next question");
-    goToNextQuestion();
-  }
+//   if (submit_Btn.classList.contains("next-change")){
+//     submit_Btn.classList.remove("next-change display-hide");
+//     count++;
+//     console.log("before next question");
+//     goToNextQuestion();
+//   }
   else{
   const currentQuestion = selectedData.questions[count];
   const correctAnswer = currentQuestion.answer; // text OR index based on your data
@@ -239,6 +271,7 @@ function handlesubmit(selectedData) {
         "src",
         "./starter-code/assets/images/icon-correct.svg"
       );
+      correct_score ++;
     }
 
     //    CASE 2: SELECTED BUT WRONG
@@ -253,11 +286,18 @@ function handlesubmit(selectedData) {
       );
     }
   });
-  submit_Btn.textContent = "Next Question";
-  submit_Btn.classList.add("next-change");
+  nextpage.classList.remove("display-hide")
+  submit_Btn.classList.add("display-hide");
   }
     
 }
+nextpage.addEventListener("click", () =>{
+    submit_Btn.classList.remove("display-hide");
+    nextpage.classList.add("display-hide");
+    count++;
+    console.log("before next question");
+    goToNextQuestion();
+})
 
 submit_Btn.addEventListener("click", () => {
   if (!currentQuiz) return;
