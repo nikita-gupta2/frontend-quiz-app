@@ -97,7 +97,7 @@ nav{
     align-items: center;
     justify-content: flex-end;
 }
-.nav-justify{
+.content-justify{
     justify-content: space-between;
 }
 
@@ -115,6 +115,13 @@ nav{
     height: 40px;
     border-radius: 4px;
 }
+.option-hide{
+     display: none;
+}
+.option-letter,.text-grey-500{
+    color: var(--grey-500);
+}
+
  .nav-icon img{
     width: 28.57px;
     height: 28.57px;
@@ -177,7 +184,13 @@ main{
     background-color: var(--green-100);
     border: 1px solid var(--green-100);
 }
+.bg-grey-500{
+    background-color: var(--grey-500);
+}
 
+.bg-white{
+    background-color: var(--green-500);
+}
 .bg-blue-50{
     background-color: var(--blue-50);
     border: 1px solid var(--blue-50);
@@ -185,6 +198,10 @@ main{
 .bg-purple-100{
     background-color: var(--purple-100);
     border: 1px solid var(--purple-100);
+}
+.option-mode{
+    background-color: var(--grey-50);
+    border: 1px solid var(--grey-50);
 }
 .choice-btn{
     display: flex;
@@ -203,7 +220,17 @@ main{
     border-radius: 12px;
     background-color: var(--white);
 }
-
+.submit, .replay{
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 16px;
+    text-align: center;
+    border-radius: 12px;
+    background-color: var(--purple-600);
+    color: var(--white);
+}
 .ques-bar{
     margin-top: 24px;
     width: 100%;
@@ -241,13 +268,47 @@ main{
 }
 
 
+.null-error {
+    color: var(--red-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.null-error img{
+    width: 32px;
+    height: 32px;
+}
+.text-white{
+    color: var(--white);
+}
 
-
-
-
-
-
-
+.error-hide,.display-hide{
+    display: none;
+}
+.correct {
+  border: 3px solid var(--green-500);
+}
+.correct-icon{
+    background-color: var(--green-500);
+}
+.wrong-icon{
+    background-color: var(--red-500);
+}
+.option-letter-selected{
+    color: var(--white);
+}
+.wrong {
+  border: 3px solid var(--red-500);
+}
+.display-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    gap: 40px;
+}
 
 @media (min-width: 768px) {
 
@@ -305,7 +366,10 @@ main{
   letter-spacing: 0;
   font-weight: 500; /* Rubik Medium */
 }
-
+.submit,.replay{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
 /* Text Preset 5 – Regular */
 .text-preset-5-regular {
   font-size: 24px;
@@ -342,7 +406,7 @@ main{
     gap: 16px;
 }
 .nav-icon{
-    width: 56px;
+    min-width: 56px;
     height: 56px;
 }
 .choice{
