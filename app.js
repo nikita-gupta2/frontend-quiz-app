@@ -7,6 +7,8 @@ let sun = document.querySelector(".sun-icon");
 let moon = document.querySelector(".moon-icon");
 let theme_btn = document.querySelector(".theme-btn");
 let sbj_info = document.querySelector(".subject-info");
+let subject = document.querySelector(".choicefirst-btn");
+let sbj_choice = document.querySelectorAll(".choicefirst");
 let choice_btns = document.querySelectorAll(".choice");
 let choice_article = document.querySelector(".choice-btn");
 let nav= document.querySelector("nav");
@@ -18,6 +20,10 @@ let result_display = document.querySelector(".result-display");
 let quiz_result = document.querySelector(".quiz-result");
 let nextpage = document.querySelector(".Nextpage");
 let resultNavQues = result_display.querySelector(".nav-ques");
+let replay_btn = document.querySelector(".replay");
+let result_box = document.querySelector(".display-box");
+let scores_display_text = document.querySelector(".score");
+
 let correct_score = 0;
 
 function darktheme(){
@@ -44,6 +50,17 @@ btn.addEventListener("click",()=>{
     theme_btn.classList.toggle("toggle-end");
     sbj_info.classList.toggle("blue-300-color");
     que_no.classList.toggle("blue-300-color")
+    sbj_choice.forEach(btn =>{
+        btn.classList.toggle("choice-dark");
+    })
+    topics.forEach(btn => {
+        btn.classList.toggle("text-white");
+    })
+    scores_display_text.classList.toggle("text-white");
+    result_box.classList.toggle("choice-dark");
+    let scoreText = result_box.querySelector(".text-preset-5");
+    console.log(scoreText);
+    scoreText.classList.toggle("blue-300-color");
     choice_btns.forEach(btn => {
         btn.classList.toggle("choice-dark");
     });
@@ -62,7 +79,6 @@ const subjectBgMap = {
 
 let selectedOptionIndex = null;
 let selectedBtn = null;
-let firstTopic = topics[0];
 let count=0;
 let quiz_start =true;
 let title ;
@@ -73,10 +89,10 @@ function enableOptionMode() {
     const letter = iconDiv.querySelector(".option-letter");
 
     // hide image
-    img.classList.add("option-hide");
+    img.classList.add("display-hide");
 
     // show A/B/C/D
-    letter.classList.remove("option-hide");
+    letter.classList.remove("display-hide");
 
     // change background
     iconDiv.classList.add("option-mode");
@@ -115,34 +131,60 @@ function updateNavFromClicked(clickedBtn, topic_nav) {
 }
 
 
+sbj_choice.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+  const clickedBtn = e.currentTarget;
+  console.log(clickedBtn);
+  topic_nav.classList.remove("display-hide"); // remove nav-topic from hiding 
+  nav.classList.add("content-justify");// justify its content
+    updateNavFromClicked(clickedBtn, topic_nav);
+    updateNavFromClicked(clickedBtn, resultNavQues);
+    // enableOptionMode();
+    quiz_front.classList.add("display-hide");
+  // changing 1st article part
+    quiz_Display.classList.remove("display-hide");
+    submit_Btn.classList.remove("display-hide");
+     document.querySelector(".choicefirst-btn")
+            .classList.add("display-hide");
+    const title = clickedBtn.querySelector(".nav-topic").textContent.trim();
+    quiz_start = false;
+    // subject.classList.add("display-hide");
+    choice_article.classList.remove("display-hide");
+    console.log(title);
+    // choice_article.classList.add("answering");
+    // choice_article.classList.remove("locked");
+    updateUI(title);
+  })
+})
+
 
 choice_btns.forEach((btn, index) => {
   btn.addEventListener("click", (e) => {
   const clickedBtn = e.currentTarget;
   console.log("Clicked:", e.currentTarget);
-    
+  if(nextpage.classList.contains("display-hide")){
+        choice_article.classList.add("answering");
+    choice_article.classList.remove("locked");
+  }
 
-  if (
-    (clickedBtn.classList.contains("html") ||
-    clickedBtn.classList.contains("css") ||
-    clickedBtn.classList.contains("js") ||
-    clickedBtn.classList.contains("Accessibility") ) && (quiz_start === true)
-  ){
-    topic_nav.classList.remove("nav-ques-hide"); // remove nav-topic from hiding 
-  nav.classList.add("content-justify");// justify its content
-    updateNavFromClicked(clickedBtn, topic_nav);
-    updateNavFromClicked(clickedBtn, resultNavQues);
-     enableOptionMode();
-    quiz_front.classList.add("quiz-choice-hide");
-  // changing 1st article part
-    quiz_Display.classList.remove("quiz-display-hide");
-    submit_Btn.classList.remove("submit-btnhide");
-    
-    const title = clickedBtn.querySelector(".nav-topic").textContent.trim();
-    quiz_start = false;
-    updateUI(title,clickedBtn);
-  } else{
-    choice_btns.forEach(b => b.classList.remove("selected"));
+    // if (nextpage.classList.contains("display-hide")){
+    //     
+    // }
+
+    choice_btns.forEach(b => {
+        b.classList.remove("selected");
+        b.classList.remove("border-purple");
+        b.querySelector(".nav-icon").classList.remove("bag-purple");
+        b.querySelector(".option-letter").classList.remove("topic-dark");
+    });
+
+    if (choice_article.classList.contains("answering")){
+        choice_article.classList.remove("answering");
+    choice_article.classList.add("locked");
+    btn.classList.add("border-purple");
+    btn.querySelector(".nav-icon").classList.add("bag-purple");
+    btn.querySelector(".option-letter").classList.add("topic-dark");
+    };
 
     // mark selected
     btn.classList.add("selected");
@@ -150,8 +192,7 @@ choice_btns.forEach((btn, index) => {
     selectedBtn = btn;
 
     // hide error if shown
-    null_Error.classList.add("error-hide");
-  }
+    null_Error.classList.add("display-hide");
 });
 });
 let currentQuiz = null;
@@ -203,7 +244,7 @@ function goToNextQuestion() {
     btn.classList.remove("correct", "wrong", "content-justify", "selected");
     letter.classList.remove("option-letter-selected");
     iconDiv.classList.remove("correct-icon", "wrong-icon");
-    result_icon.classList.add("error-hide");
+    result_icon.classList.add("display-hide");
   });
   
   // END QUIZ CHECK
@@ -219,7 +260,7 @@ function goToNextQuestion() {
 //update buttons value
 function updatebuttons(selectedData){
   const options = selectedData.questions[count].options;
-
+    
   choice_btns.forEach((btn, index) => {
     const topicEl = btn.querySelector(".nav-topic");
 
@@ -232,20 +273,19 @@ function updatebuttons(selectedData){
 function handlesubmit(selectedData) {
     console.log("inside submit");
   if (selectedOptionIndex === null) {
-    null_Error.classList.remove("error-hide");
+    null_Error.classList.remove("display-hide");
     return;
   }
-//   if (submit_Btn.classList.contains("next-change")){
-//     submit_Btn.classList.remove("next-change display-hide");
-//     count++;
-//     console.log("before next question");
-//     goToNextQuestion();
-//   }
   else{
+    
   const currentQuestion = selectedData.questions[count];
   const correctAnswer = currentQuestion.answer; // text OR index based on your data
-
+    choice_article.classList.remove("answering");
+    choice_article.classList.add("locked");
   choice_btns.forEach((btn, index) => {
+    btn.classList.remove("border-purple");
+    btn.querySelector(".nav-icon").classList.remove("bag-purple");
+    btn.querySelector(".option-letter").classList.remove("topic-dark");
     const result_icon = btn.querySelector(".result-icon");
     const result_img = btn.querySelector(".icon-image");
     const btn_content = btn.querySelector(".nav-topic").textContent.trim();
@@ -255,7 +295,7 @@ function handlesubmit(selectedData) {
     btn.classList.remove("correct", "wrong", "content-justify");
         letter.classList.remove("option-letter-selected");
     iconDiv.classList.remove("correct-icon","wrong-icon");
-    result_icon.classList.add("error-hide");
+    result_icon.classList.add("display-hide");
 
 
        //CASE 1: CORRECT OPTION
@@ -266,18 +306,22 @@ function handlesubmit(selectedData) {
             letter.classList.add("option-letter-selected");
         }
        btn.classList.add("content-justify");
-      result_icon.classList.remove("error-hide");
+      result_icon.classList.remove("display-hide");
       result_img.setAttribute(
         "src",
         "./starter-code/assets/images/icon-correct.svg"
       );
-      correct_score ++;
+      if (btn.classList.contains("selected")){
+              correct_score++;
+      console.log(correct_score);
+      }
+
     }
 
     //    CASE 2: SELECTED BUT WRONG
     if (btn.classList.contains("selected") && btn_content !== correctAnswer) {
       btn.classList.add("wrong", "content-justify");
-      result_icon.classList.remove("error-hide");
+      result_icon.classList.remove("display-hide");
       iconDiv.classList.add("wrong-icon");
       letter.classList.add("option-letter-selected");
       result_img.setAttribute(
@@ -299,11 +343,30 @@ nextpage.addEventListener("click", () =>{
     goToNextQuestion();
 })
 
+
+replay_btn.addEventListener("click", () => {
+    quiz_front.classList.remove("display-hide");
+     document.querySelector(".choicefirst-btn")
+            .classList.remove("display-hide");
+    result_display.classList.add("display-hide");
+    quiz_result.classList.add("display-hide");
+    topic_nav.classList.add("display-hide"); 
+    nav.classList.remove("content-justify");
+    selectedOptionIndex = null;
+    selectedBtn = null;
+
+    count=0;
+    quiz_start =true;
+    correct_score = 0;
+    currentQuiz = null;
+})
+
+
 submit_Btn.addEventListener("click", () => {
   if (!currentQuiz) return;
   handlesubmit(currentQuiz);
 });
-function updateUI(title,clickedBtn) {
+function updateUI(title) {
   const allowedTitles = ["HTML", "CSS", "JavaScript", "Accessibility"];
 
   // check if title is valid

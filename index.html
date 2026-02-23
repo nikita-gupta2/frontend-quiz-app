@@ -11,7 +11,7 @@
 </head>
 <body>
   <nav class="mode">
-    <div class="nav-ques nav-ques-hide">
+    <div class="nav-ques display-hide">
       <div class="nav-icon ">
         <img  src="./starter-code/assets/images/icon-accessibility.svg" alt="icon-accessibility">
       </div>   
@@ -33,7 +33,7 @@
       <h1 class="text-preset-2-light">Quiz completed</h1>
       <h2 class="text-preset-2-medium">You scored...</h2> 
     </article>
-    <article class="quiz-display quiz-display-hide">
+    <article class="quiz-display display-hide">
       <div class="quiz">
         <p class="ques-no text-preset-6">Question <span class="number" >number</span> of 10</p>
         <h1 class="ques-detail text-preset-3">Frontend quiz</h1> 
@@ -52,67 +52,96 @@
           </div>   
           <h1 class="nav-topic text-preset-4">Accessibility</h1>
         </div>
-        <div>
-          <h1 class="score text-preset-1">8</h1>
-        <p class="text-preset-5 text-grey-500">out of 10</p>
+        <div class="display_scores">
+        <h1 class="score text-preset-1">8</h1>
+        <p class="text-preset-5  ">out of 10</p>
       </div>
       </div>
       <button class="replay text-preset-4">Play Again</button>
-   </article>
-    <article class="choice-btn">
-      <button class="choice html">
+    </article>
+    <article class="choicefirst-btn">
+      <button class="choicefirst html">
         <div class="nav-ques">
           <div class="nav-icon bg-orange-50">
             <img  src="./starter-code/assets/images/icon-html.svg" alt="icon-html">
-            <span class="option-letter option-hide text-preset-4">A</span>
           </div>   
       <h1 class="nav-topic text-preset-4">HTML</h1>
     </div>
-        <div class="result-icon error-hide">
-      <img class="icon-image" src="./starter-code/assets/images/icon-correct.svg" alt="icon-correct">
-    </div>
       </button>
-      <button class="choice css">
+      <button class="choicefirst css">
     <div class="nav-ques">
       <div class="nav-icon bg-green-100">
         <img  src="./starter-code/assets/images/icon-css.svg" alt="icon-css">
-        <span class="option-letter option-hide text-preset-4">B</span>
       </div>   
       <h1 class="nav-topic text-preset-4">CSS</h1>
     </div>
-        <div class="result-icon error-hide">
-      <img class="icon-image" src="./starter-code/assets/images/icon-correct.svg" alt="icon-correct">
-    </div>
       </button>
-      <button class="choice js">
+      <button class="choicefirst js">
     <div class="nav-ques">
       <div class="nav-icon bg-blue-50">
         <img  src="./starter-code/assets/images/icon-js.svg" alt="icon-js">
-        <span class="option-letter option-hide text-preset-4">C</span>
       </div>   
       <h1 class="nav-topic text-preset-4">JavaScript</h1>
     </div>
-        <div class="result-icon error-hide">
-      <img class="icon-image" src="./starter-code/assets/images/icon-correct.svg" alt="icon-correct">
-    </div>
       </button>
-    <button class="choice Accessibility">
+    <button class="choicefirst Accessibility">
       <div class="nav-ques">
       <div class="nav-icon bg-purple-100">
         <img src="./starter-code/assets/images/icon-accessibility.svg" alt="icon-accessibility">
-        <span class="option-letter option-hide text-preset-4">D</span>
       </div>   
       <h1 class="nav-topic text-preset-4">Accessibility</h1>
     </div>
-    <div class="result-icon error-hide">
+    </button>
+    </article>
+    <article class="choice-btn display-hide">
+      <button class="choice">
+        <div class="nav-ques">
+          <div class="nav-icon option-icon">
+            <span class="option-letter text-preset-4">A</span>
+          </div>   
+      <h1 class="nav-topic text-preset-4">HTML</h1>
+    </div>
+        <div class="result-icon display-hide">
+      <img class="icon-image" src="./starter-code/assets/images/icon-correct.svg" alt="icon-correct">
+    </div>
+      </button>
+      <button class="choice">
+    <div class="nav-ques">
+      <div class="nav-icon option-icon">
+        <span class="option-letter text-preset-4">B</span>
+      </div>   
+      <h1 class="nav-topic text-preset-4">CSS</h1>
+    </div>
+    <div class="result-icon display-hide">
+      <img class="icon-image" src="./starter-code/assets/images/icon-correct.svg" alt="icon-correct">
+    </div>
+      </button>
+      <button class="choice">
+    <div class="nav-ques">
+      <div class="nav-icon option-icon">
+        <span class="option-letter  text-preset-4">C</span>
+      </div>   
+      <h1 class="nav-topic text-preset-4">JavaScript</h1>
+    </div>
+        <div class="result-icon display-hide">
+      <img class="icon-image" src="./starter-code/assets/images/icon-correct.svg" alt="icon-correct">
+    </div>
+      </button>
+    <button class="choice">
+      <div class="nav-ques">
+      <div class="nav-icon option-icon">
+        <span class="option-letter text-preset-4">D</span>
+      </div>   
+      <h1 class="nav-topic text-preset-4">Accessibility</h1>
+    </div>
+    <div class="result-icon display-hide">
       <img class="icon-image" src="./starter-code/assets/images/icon-correct.svg" alt="icon-correct">
     </div>
     </button>
-    <button class="submit  submit-btnhide text-preset-4">Submit answer</button>
+    <button class="submit  text-preset-4">Submit answer</button>
     <button class="Nextpage  display-hide text-preset-4">Next Question</button>
-    <div class="null-error text-preset-4 error-hide"> <img src="./starter-code/assets/images/icon-incorrect.svg"><span> Please select an answer </span> </div>
+    <div class="null-error text-preset-4 display-hide"> <img src="./starter-code/assets/images/icon-incorrect.svg"><span> Please select an answer </span> </div>
     </article>
-
 
    </main>
   <!-- Quiz menu start -->
